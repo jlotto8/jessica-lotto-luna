@@ -1,3 +1,4 @@
+/* base styles */
 body {
   background-color: #f0f4f8;
   color: #222222;
@@ -49,14 +50,18 @@ img {
   display: block;
   margin: 20px auto;
 }
+
+/* smooth scrolling for links */
 html {
   scroll-behavior: smooth;
 }
 
+/* space so sections aren’t hidden by sticky nav */
 section {
   scroll-margin-top: 80px;
 }
 
+/* nav styles */
 nav {
   position: sticky;
   top: 0;
@@ -90,6 +95,7 @@ nav a:hover {
   background: #ffffff;
 }
 
+/* experience section */
 .exp-list {
   display: grid;
   gap: 14px;
@@ -128,6 +134,7 @@ nav a:hover {
   line-height: 1.55;
 }
 
+/* connect section */
 .connect-links {
   display: flex;
   flex-wrap: wrap;
@@ -150,6 +157,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* small screens */
 @media (max-width: 520px) {
   .exp-row {
     flex-direction: column;
@@ -160,3 +168,98 @@ nav a:hover {
     white-space: normal;
   }
 }
+
+/* tablet screens */
+@media (min-width: 600px) and (max-width: 1023px) {
+  h1 {
+    font-size: 3rem;
+    letter-spacing: 0.02em;
+  }
+  h2 {
+    font-size: 2rem;
+    color: #003e7a;
+  }
+
+  body { border: 5px solid orange; }
+
+  nav {
+    padding: 12px 24px;
+    border-bottom-width: 2px;
+  }
+  nav a {
+    padding: 8px 12px;
+    font-size: 1rem;
+  }
+
+  .exp-item {
+    padding: 16px 18px;
+    background: #f8fafc;
+  }
+  .exp-desc {
+    font-size: 1rem;
+    color: #1f2937;
+  }
+
+  .connect-links {
+    gap: 14px;
+    justify-content: flex-start;
+  }
+  .connect-links a {
+    font-size: 1rem;
+    padding: 10px 14px;
+  }
+}
+
+/* desktop screens */
+@media (min-width: 1024px) {
+  body { border: 5px solid blue; }
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+  section {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    color: #005fcc;
+  }
+  h2 {
+    font-size: 2.25rem;
+    border-bottom-color: #b6c5d8;
+  }
+
+  nav ul {
+    gap: 24px;
+    justify-content: center;
+  }
+  nav a {
+    font-size: 1.0625rem;
+    border-width: 1px;
+  }
+
+  .exp-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .exp-item {
+    padding: 18px 20px;
+    border-radius: 10px;
+  }
+
+  .connect-links a {
+    font-size: 1.0625rem;
+    padding: 12px 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .connect-links {
+    display: grid
