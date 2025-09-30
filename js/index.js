@@ -10,7 +10,19 @@ copyright.innerHTML = `Jessica Lotto © ${thisYear}`;
 footer.appendChild(copyright);
 
 // skills
-let skills = ["HTML", "CSS", "JavaScript", "GitHub", "Python"];
+let skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "Python",
+  "CLI",
+  "File Management",
+  "CRUD Operations",
+  "Operating Systems",
+  "Shell Scripting",
+  "SSH",
+  "Git/GitHub"
+];
 
 let skillsSection = document.querySelector("#skills");
 let skillsList = skillsSection.querySelector("ul");
@@ -20,3 +32,48 @@ for (let i = 0; i < skills.length; i++) {
   skill.innerText = skills[i];
   skillsList.appendChild(skill);
 }
+
+// message form
+let messageForm = document.forms["leave_message"];
+
+if (messageForm) {
+  messageForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let usersName = event.target.usersName.value;
+    let usersEmail = event.target.usersEmail.value;
+    let usersMessage = event.target.usersMessage.value;
+
+    console.log(usersName, usersEmail, usersMessage);
+
+    let messageSection = document.querySelector("#messages");
+    let messageList = messageSection.querySelector("ul");
+
+    let newMessage = document.createElement("li");
+    newMessage.innerHTML = `
+      <a href="mailto:${usersEmail}">${usersName}</a>
+      <span> — ${usersMessage}</span>
+    `;
+
+    let removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.innerText = "remove";
+
+    removeButton.addEventListener("click", function () {
+      let entry = this.parentNode;
+      entry.remove();
+      if (messageList.children.length === 0) {
+        messageSection.hidden = true;
+      }
+    });
+
+    newMessage.appendChild(removeButton);
+    messageList.appendChild(newMessage);
+
+    messageSection.hidden = false;
+
+    messageForm.reset();
+  });
+}
+
+
