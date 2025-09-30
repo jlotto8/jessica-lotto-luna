@@ -14,6 +14,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#leave-message">Leave a Message</a></li>
     <li><a href="#connect">Connect</a></li>
   </ul>
 </nav>
@@ -35,10 +36,10 @@
         <span class="exp-dates">2023–present</span>
       </div>
       <p class="exp-desc">
-        Technical teaching assistant, assistant program administrator.  
-        Helped to mentor and encourage 40 students, launching their technical capabilities in Python, Flask, HTML and CSS.  
-        Assisted 2 software engineer instructors with grading coursework, resulting in faster results notification.  
-        Conducted office hours twice weekly for over 200 individual tutoring sessions, leading to improvement in assignment scores.  
+        Technical teaching assistant, assistant program administrator.
+        Helped to mentor and encourage 40 students, launching their technical capabilities in Python, Flask, HTML and CSS.
+        Assisted 2 software engineer instructors with grading coursework, resulting in faster results notification.
+        Conducted office hours twice weekly for over 200 individual tutoring sessions, leading to improvement in assignment scores.
         Updated curriculum architecture by gathering and analyzing student feedback survey data, leading to an enhanced learning experience.
       </p>
     </article>
@@ -59,13 +60,13 @@
         <span class="exp-dates">2025</span>
       </div>
       <p class="exp-desc">
-        CLI – Navigate and control your computer using the command line.  
-        File Management – Manage files and directories using the command line.  
-        CRUD operations – Create, read, update, delete.  
-        Operating Systems – Overview of operating systems and their interactions with hardware and software components.  
-        Shell Scripting – Write shell scripts to automate tasks / install software packages.  
-        Secure Shell (SSH) – Securely connect to remote computers and servers, generate and use SSH keys for authentication.  
-        Version Control – Create and manage repositories, commit changes, create/merge branches, and resolve conflicts.  
+        CLI – Navigate and control your computer using the command line.
+        File Management – Manage files and directories using the command line.
+        CRUD operations – Create, read, update, delete.
+        Operating Systems – Overview of operating systems and their interactions with hardware and software components.
+        Shell Scripting – Write shell scripts to automate tasks / install software packages.
+        Secure Shell (SSH) – Securely connect to remote computers and servers, generate and use SSH keys for authentication.
+        Version Control – Create and manage repositories, commit changes, create/merge branches, and resolve conflicts.
       </p>
     </article>
   </div>
@@ -81,6 +82,27 @@
   <ul id="project-list"></ul>
 </section>
 
+<section id="leave-message">
+  <h2>Leave a Message</h2>
+  <form name="leave_message">
+    <label for="usersName">Name</label><br>
+    <input type="text" id="usersName" name="usersName" required><br>
+
+    <label for="usersEmail">Email</label><br>
+    <input type="email" id="usersEmail" name="usersEmail" required><br>
+
+    <label for="usersMessage">Message</label><br>
+    <textarea id="usersMessage" name="usersMessage" required></textarea><br>
+
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<section id="messages" hidden>
+  <h2>Messages</h2>
+  <ul></ul>
+</section>
+
 <section id="connect">
   <h2>Connect</h2>
   <div class="connect-links">
@@ -92,3 +114,4 @@
 <script src="js/index.js"></script>
 </body>
 </html>
+
