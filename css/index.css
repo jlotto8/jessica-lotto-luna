@@ -370,3 +370,38 @@ nav a:hover {
   }
 }
 
+/* projects list */
+#projects ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+#projects li {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+#projects a {
+  color: #004d99;
+  text-decoration: none;
+}
+
+#projects li:hover {
+  background: #f5f8fc;
+}
+
+@media (max-width: 520px) {
+  #projects ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}

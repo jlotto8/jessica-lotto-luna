@@ -77,3 +77,42 @@ if (messageForm) {
 }
 
 
+// -------------------------------
+// GITHUB API FETCH (Portfolio)
+// -------------------------------
+fetch("https://api.github.com/users/jlotto8/repos")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((repositories) => {
+    console.log(repositories); // verify what the API returns
+
+    let projectSection = document.querySelector("#projects");
+    let projectList = projectSection.querySelector("ul");
+
+    for (let i = 0; i < repositories.length; i++) {
+      let project = document.createElement("li");
+
+      // Make each repo name clickable to its GitHub page
+      let link = document.createElement("a");
+      link.href = repositories[i].html_url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = repositories[i].name;
+
+      project.appendChild(link);
+      projectList.appendChild(project);
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching repositories:", error);
+
+    let projectSection = document.querySelector("#projects");
+    let projectList = projectSection.querySelector("ul");
+    let errorItem = document.createElement("li");
+    errorItem.textContent = "Unable to load repositories. Please try again later.";
+    projectList.appendChild(errorItem);
+  });
