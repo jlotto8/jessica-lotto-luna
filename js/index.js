@@ -86,94 +86,43 @@ if (messageForm) {
   });
 }
 
-// --------- Projects (GitHub repos) – keep what you already had or this minimal fetch ---------
-// If you already implemented the Lesson-13 repos list, keep your version.
-// Example minimal (comment out if you don't need):
-/*
+
+// -------------------------------
+// GITHUB API FETCH (Portfolio)
+// -------------------------------
 fetch("https://api.github.com/users/jlotto8/repos")
-  .then(r => r.json())
-  .then(repos => {
-    const projectSection = document.querySelector("#projects");
-    const projectList = projectSection.querySelector("ul");
-    repos.forEach(repo => {
-      const li = document.createElement("li");
-      const a = document.createElement("a");
-      a.href = repo.html_url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.textContent = repo.name;
-      li.appendChild(a);
-      projectList.appendChild(li);
-    });
-  })
-  .catch(err => {
-    const projectList = document.querySelector("#projects ul");
-    const li = document.createElement("li");
-    li.textContent = "Unable to load repositories.";
-    projectList.appendChild(li);
-  });
-*/
-
-// ================== Imgflip Memes (random selection from popular templates) ==================
-(function () {
-  const API = "https://api.imgflip.com/get_memes";
-  const grid = document.getElementById("memes-grid");
-  const status = document.getElementById("memes-status");
-  const refreshBtn = document.getElementById("memes-refresh");
-
-  function pickRandom(arr, n) {
-    const copy = arr.slice();
-    for (let i = copy.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
-    return copy.slice(0, n);
-  }
+    return response.json();
+  })
+  .then((repositories) => {
+    console.log(repositories); // verify what the API returns
 
-  function render(memes) {
-    grid.innerHTML = "";
-    memes.forEach(m => {
-      const card = document.createElement("div");
-      card.className = "meme-card";
-      card.innerHTML = `
-        <img src="${m.url}" alt="${m.name}">
-        <div class="title">${m.name}</div>
-      `;
-      grid.appendChild(card);
-    });
-  }
+    let projectSection = document.querySelector("#projects");
+    let projectList = projectSection.querySelector("ul");
 
-  function loadMemes() {
-    if (status) status.hidden = false;
-    fetch(API)
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to fetch memes");
-        return res.json();
-      })
-      .then(data => {
-        if (status) status.hidden = true;
-        const list = (data && data.data && data.data.memes) ? data.data.memes : [];
+    for (let i = 0; i < repositories.length; i++) {
+      let project = document.createElement("li");
 
-        // filter out tiny images to avoid awkward cards
-        const decent = list.filter(m => m.width >= 300 && m.height >= 300);
+      // Make each repo name clickable to its GitHub page
+      let link = document.createElement("a");
+      link.href = repositories[i].html_url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = repositories[i].name;
 
-        // pick 1–2 at random
-        const chosen = pickRandom(decent.length ? decent : list, 2);
+      project.appendChild(link);
+      projectList.appendChild(project);
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching repositories:", error);
 
-        render(chosen);
-      })
-      .catch(err => {
-        console.error("Memes fetch error:", err);
-        if (status) {
-          status.hidden = false;
-          status.textContent = "Unable to load memes right now.";
-        }
-      });
-  }
-
-  if (refreshBtn) {
-    refreshBtn.addEventListener("click", loadMemes);
-  }
-
-  loadMemes();
-})();
+    let projectSection = document.querySelector("#projects");
+    let projectList = projectSection.querySelector("ul");
+    let errorItem = document.createElement("li");
+    errorItem.textContent = "Unable to load repositories. Please try again later.";
+    projectList.appendChild(errorItem);
+  });
