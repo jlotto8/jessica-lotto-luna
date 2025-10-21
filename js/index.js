@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 // footer
 let today = new Date();
 let thisYear = today.getFullYear();
@@ -114,6 +104,7 @@ fetch("https://api.github.com/users/jlotto8/repos")
   });
 */
 
+/*
 // ================== Imgflip Memes (random selection from popular templates) ==================
 (function () {
   const API = "https://api.imgflip.com/get_memes";
@@ -176,4 +167,28 @@ fetch("https://api.github.com/users/jlotto8/repos")
   }
 
   loadMemes();
+})();
+*/
+(async function loadRepos() {
+  const projectSection = document.querySelector("#projects");
+  const projectList = projectSection?.querySelector("ul");
+  if (!projectList) return;
+
+  try {
+    const res = await fetch("https://api.github.com/users/jlotto8/repos?per_page=100&sort=updated");
+    if (!res.ok) throw new Error("GitHub API error");
+    const repos = await res.json();
+
+    projectList.innerHTML = ""; // clear any placeholder
+    repos.forEach(r => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${r.html_url}" target="_blank" rel="noopener">${r.name}</a>`;
+      projectList.appendChild(li);
+    });
+  } catch (e) {
+    console.error(e);
+    const li = document.createElement("li");
+    li.textContent = "Unable to load repositories right now.";
+    projectList.appendChild(li);
+  }
 })();
