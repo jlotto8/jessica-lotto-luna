@@ -370,3 +370,55 @@ nav a:hover {
   }
 }
 
+/* memes */
+#memes {
+  margin-top: 20px;
+}
+
+.memes-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+#memes-refresh {
+  padding: 10px 16px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  background: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+#memes-refresh:hover { background: #f5f5f5; }
+
+#memes-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.meme-card {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 280px;
+  text-align: center;
+}
+
+.meme-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 8px auto 6px auto;
+}
+
+.meme-card .title {
+  font-weight: 700;
+}
+
+.muted {
+  color: #475569;
+}
